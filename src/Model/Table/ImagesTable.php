@@ -7,22 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * ProdutosImages Model
+ * Images Model
  *
  * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\BelongsTo $Produtos
  *
- * @method \App\Model\Entity\ProdutosImage get($primaryKey, $options = [])
- * @method \App\Model\Entity\ProdutosImage newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\ProdutosImage[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\ProdutosImage|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\ProdutosImage saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\ProdutosImage patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\ProdutosImage[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\ProdutosImage findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Image get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Image newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Image[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Image|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Image saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Image patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Image[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Image findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class ProdutosImagesTable extends Table
+class ImagesTable extends Table
 {
     /**
      * Initialize method
@@ -34,7 +34,7 @@ class ProdutosImagesTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('produtos_images');
+        $this->setTable('images');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 

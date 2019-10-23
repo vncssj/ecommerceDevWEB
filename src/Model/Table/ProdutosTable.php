@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Produtos Model
  *
- * @property \App\Model\Table\ProdutosImagesTable&\Cake\ORM\Association\HasMany $ProdutosImages
+ * @property &\Cake\ORM\Association\HasMany $Images
  * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\BelongsToMany $Pedidos
  *
  * @method \App\Model\Entity\Produto get($primaryKey, $options = [])
@@ -37,7 +37,7 @@ class ProdutosTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('ProdutosImages', [
+        $this->hasMany('Images', [
             'foreignKey' => 'produto_id'
         ]);
         $this->belongsToMany('Pedidos', [

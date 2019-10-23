@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * ProdutosImage Entity
+ * Image Entity
  *
  * @property int $id
  * @property string|null $titulo
@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Produto $produto
  */
-class ProdutosImage extends Entity
+class Image extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
