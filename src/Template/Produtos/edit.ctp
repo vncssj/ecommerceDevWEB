@@ -14,6 +14,8 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Produtos Images'), ['controller' => 'ProdutosImages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Produtos Image'), ['controller' => 'ProdutosImages', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>
     </ul>

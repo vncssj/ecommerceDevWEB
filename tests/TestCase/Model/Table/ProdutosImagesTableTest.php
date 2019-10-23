@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ProdutosTable;
+use App\Model\Table\ProdutosImagesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ProdutosTable Test Case
+ * App\Model\Table\ProdutosImagesTable Test Case
  */
-class ProdutosTableTest extends TestCase
+class ProdutosImagesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ProdutosTable
+     * @var \App\Model\Table\ProdutosImagesTable
      */
-    public $Produtos;
+    public $ProdutosImages;
 
     /**
      * Fixtures
@@ -23,9 +23,8 @@ class ProdutosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Produtos',
         'app.ProdutosImages',
-        'app.Pedidos'
+        'app.Produtos'
     ];
 
     /**
@@ -36,8 +35,8 @@ class ProdutosTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Produtos') ? [] : ['className' => ProdutosTable::class];
-        $this->Produtos = TableRegistry::getTableLocator()->get('Produtos', $config);
+        $config = TableRegistry::getTableLocator()->exists('ProdutosImages') ? [] : ['className' => ProdutosImagesTable::class];
+        $this->ProdutosImages = TableRegistry::getTableLocator()->get('ProdutosImages', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class ProdutosTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Produtos);
+        unset($this->ProdutosImages);
 
         parent::tearDown();
     }
@@ -68,6 +67,16 @@ class ProdutosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
