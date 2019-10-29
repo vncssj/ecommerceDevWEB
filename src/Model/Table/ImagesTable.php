@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -59,13 +60,8 @@ class ImagesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('titulo')
-            ->maxLength('titulo', 50)
-            ->allowEmptyString('titulo');
-
-        $validator
             ->scalar('nome')
-            ->maxLength('nome', 50)
+            ->maxLength('nome', 255)
             ->requirePresence('nome', 'create')
             ->notEmptyString('nome');
 

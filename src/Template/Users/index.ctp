@@ -6,7 +6,7 @@
  */
 ?>
 <div class="jumbotron">
-    <h3>Usuários</h3>
+    <h3 class="titulos">Usuários</h3>
 </div>
 <table class="table">
     <thead>

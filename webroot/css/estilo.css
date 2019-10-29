@@ -1,8 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat|Pacifico|Shadows+Into+Light&display=swap');
 .centralizar {
     text-align: center;
+}
+
+#titulo-principal {
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Indie Flower', cursive; */
+    /* font-family: 'Pacifico', cursive; */
+    /* font-family: 'Shadows Into Light', cursive; */
+    color: #f28181;
 }
 
 .titulos {
     margin: 20px;
     background-color: transparent;
+}
+
+.sort a {
+    color: #000;
+}
+
+.menu {
+    background-color: #000;
+    display: flex;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.menu ul li {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 3px solid #000;
+    padding: 20px;
+}
+
+.menu ul li:hover a {
+    color: #f28181;
+}
+
+.menu ul li:hover {
+    border-bottom-color: #f28181;
+    cursor: pointer;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+footer {
+    background-color: #090808;
+    color: #FFF;
+    padding: 10px;
+}
+
+.search-input {
+    width: 16rem !important;
+    float: left;
+    height: 20px;
+    margin: 0px !important;
+    background-color: #000 !important;
+    border-color: #000 !important;
+    border-bottom-color: #000 !important;
+    border-bottom-color: #f28181 !important;
+    color: #f28181 !important;
+}
+
+.menu nav {
+    width: 80%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-inicial {
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px;
 }

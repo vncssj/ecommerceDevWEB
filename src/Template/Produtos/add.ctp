@@ -1,29 +1,27 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Produto $produto
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="produtos form large-9 medium-8 columns content">
+<div class="col-12">
     <?= $this->Form->create($produto) ?>
     <fieldset>
-        <legend><?= __('Add Produto') ?></legend>
-        <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('descricao');
-            echo $this->Form->control('valor_compra');
-            echo $this->Form->control('valor_venda');
-            echo $this->Form->control('pedidos._ids', ['options' => $pedidos]);
-        ?>
+        <legend class="titulos">Novo Produto</legend>
+
+        <div class="col-12">
+            <?= $this->Form->control('nome'); ?>
+        </div>
+        <div class="form-inline">
+
+            <div class="col-6">
+                <?= $this->Form->control('valor_compra'); ?>
+            </div>
+            <div class="col-6">
+                <?= $this->Form->control('valor_venda'); ?>
+            </div>
+        </div>
+        <div class="col-12">
+            <?= $this->Form->control('descricao'); ?>
+        </div>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="clearfix">&nbsp</div>
+    <div class="centralizar">
+        <?= $this->Form->button('Salvar', ['class' => 'btn btn-info col-4']) ?>
+    </div>
     <?= $this->Form->end() ?>
 </div>

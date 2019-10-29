@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+use Cake\Filesystem\Folder;
 
 /**
  * Produtos Controller
@@ -34,7 +37,7 @@ class ProdutosController extends AppController
     public function view($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => ['Pedidos', 'ProdutosImages']
+            'contain' => ['Pedidos']
         ]);
 
         $this->set('produto', $produto);
@@ -104,5 +107,35 @@ class ProdutosController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function home()
+    {
+        $produtos = $this->Produtos->find('all')->contain('Images');
+        $this->set(compact('produtos'));
+    }
+
+    public function Images($produto)
+    {
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $dados = $this->request->getData();
+            $local = 'img/produtos/';
+            foreach ($dados['Images'] as $imagem) {
+                if ($imagem['type'] === 'image/jpeg' || $imagem['type'] === 'image/png') {
+                    $now = Time::now()->i18nFormat('yyyy-MM-dd-HH-mm-ss');
+                    $nome = $now  . $imagem['name'];
+                    if (move_uploaded_file($imagem['tmp_name'], $local . $nome)) {
+                        $imagem['nome'] = $nome;
+                        $imagem['produto_id'] = $produto;
+                        $imageEntity = $this->Produtos->Images->newEntity();
+                        $imageEntity = $this->Produtos->Images->patchEntity($imageEntity, $imagem);
+                        $this->Produtos->Images->save($imageEntity);
+                    }
+                }
+            }
+            $this->Flash->success('Imagens adicionadas com sucesso');
+        }
+        $images = $this->Produtos->Images->find('all')->where(['produto_id' => $produto]);
+        $this->set(compact('images'));
     }
 }

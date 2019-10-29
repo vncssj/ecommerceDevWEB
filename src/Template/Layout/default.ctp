@@ -14,7 +14,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Ecommerce';
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +29,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('estilo.css') ?>
     <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('all.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -40,12 +42,29 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: #FFFFE0;">
+<body>
     <?= $this->Flash->render() ?>
+    <div class="jumbotron" style="margin-bottom: 0;">
+        <h1 id="titulo-principal">TechShop</h1>
+    </div>
+    <div class="menu">
+        <nav>
+            <ul>
+                <li class=""><a href="<?= $this->request->webroot ?>">Inicio</a></li>
+                <li class=""><a href="#">Produtos</a></li>
+                <li class=""><a href="/sobre">Sobre</a></li>
+                <li class=""><a href="/contate-nos">Contate-nos</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <?= $this->Form->input('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
+        </div>
+    </div>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
+    <footer class="text-center">
+        Copyright © 2019 | TechShop
     </footer>
 </body>
 
