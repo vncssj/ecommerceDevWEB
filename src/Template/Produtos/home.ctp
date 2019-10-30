@@ -19,7 +19,7 @@
 </div>
 <div class="row">
     <div class="col-12 text-center">
-        <h2 class="titulo-inicial">Nossos Produtos</h2>
+        <h2 class="titulo-inicial">Nossos Novos Produtos</h2>
     </div>
     <?php if (isset($produtos)) : ?>
         <?php foreach ($produtos as $produto) : ?>
