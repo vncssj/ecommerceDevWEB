@@ -10,7 +10,12 @@
     /* font-family: 'Shadows Into Light', cursive; */
     color: #f28181;
 }
-
+#titulo-principal a {
+color: inherit;
+}
+#titulo-principal a:hover {
+    text-decoration: none;
+}
 .titulos {
     margin: 20px;
     background-color: transparent;
@@ -68,10 +73,6 @@ footer {
     border-bottom-color: #000 !important;
     border-bottom-color: #f28181 !important;
     color: #f28181 !important;
-}
-
-.menu nav {
-    width: 80%;
 }
 
 .search {

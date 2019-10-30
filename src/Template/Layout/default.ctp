@@ -44,18 +44,20 @@ $cakeDescription = 'Ecommerce';
 
 <body>
     <?= $this->Flash->render() ?>
-    <div class="jumbotron" style="margin-bottom: 0;">
-        <h1 id="titulo-principal">TechShop</h1>
+    <div class="jumbotron" style="margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>/img/bg.jpg'); background-position: 30% 70%;">
+        <h1 id="titulo-principal"><a href="<?= $this->request->webroot?>">TechShop</a></h1>
     </div>
     <div class="menu">
-        <nav>
-            <ul>
-                <li class=""><a href="<?= $this->request->webroot ?>">Inicio</a></li>
-                <li class=""><a href="#">Produtos</a></li>
-                <li class=""><a href="/sobre">Sobre</a></li>
-                <li class=""><a href="/contate-nos">Contate-nos</a></li>
-            </ul>
-        </nav>
+        <div class="col-5 offset-4">
+            <nav>
+                <ul>
+                    <li class=""><a href="<?= $this->request->webroot ?>">Inicio</a></li>
+                    <li class=""><a href="#">Produtos</a></li>
+                    <li class=""><a href="/sobre">Sobre</a></li>
+                    <li class=""><a href="/contate-nos">Contate-nos</a></li>
+                </ul>
+            </nav>
+        </div>
         <div class="search">
             <?= $this->Form->input('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
         </div>
