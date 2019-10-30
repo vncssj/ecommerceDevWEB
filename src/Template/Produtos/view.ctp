@@ -5,59 +5,40 @@
  * @var \App\Model\Entity\Produto $produto
  */
 ?>
-<div class="produtos view large-9 medium-8 columns content">
-    <h3><?= h($produto->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($produto->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($produto->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Valor Compra') ?></th>
-            <td><?= $this->Number->format($produto->valor_compra) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Valor Venda') ?></th>
-            <td><?= $this->Number->format($produto->valor_venda) ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Descricao') ?></h4>
-        <?= $this->Text->autoParagraph(h($produto->descricao)); ?>
+<h3 class="text-center" style="margin: 20px;"><?= h($produto->nome) ?></h3>
+<div class="row">
+    <div class="col-6 flex">
+        <div class="marginal-fotos">
+            <?php foreach ($produto->images as $key => $imagem) : ?>
+                <div class="individual-marginal">
+                    <?= $this->Html->image('produtos/' . $imagem->nome) ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="central-foto">
+            <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['id' => 'imagem-flexivel']) ?>
+        </div>
     </div>
-    <div class="related">
-        <h4><?= __('Related Pedidos') ?></h4>
-        <?php if (!empty($produto->pedidos)) : ?>
-            <table cellpadding="0" cellspacing="0">
-                <tr>
-                    <th scope="col"><?= __('Id') ?></th>
-                    <th scope="col"><?= __('User Id') ?></th>
-                    <th scope="col"><?= __('Total') ?></th>
-                    <th scope="col"><?= __('Forma Pagamento') ?></th>
-                    <th scope="col"><?= __('Parcela') ?></th>
-                    <th scope="col"><?= __('Frete') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
-                </tr>
-                <?php foreach ($produto->pedidos as $pedidos) : ?>
-                    <tr>
-                        <td><?= h($pedidos->id) ?></td>
-                        <td><?= h($pedidos->user_id) ?></td>
-                        <td><?= h($pedidos->total) ?></td>
-                        <td><?= h($pedidos->forma_pagamento) ?></td>
-                        <td><?= h($pedidos->parcela) ?></td>
-                        <td><?= h($pedidos->frete) ?></td>
-                        <td class="actions">
-                            <?= $this->Html->link(__('View'), ['controller' => 'Pedidos', 'action' => 'view', $pedidos->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'Pedidos', 'action' => 'edit', $pedidos->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Pedidos', 'action' => 'delete', $pedidos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedidos->id)]) ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
+    <div class="col-6">
+        <table class="vertical-table">
+            <tr>
+                <th scope="row"><?= __('Preço:') ?></th>
+                <td><?= $this->Number->format($produto->valor_venda, ['before' => 'R$', 'locale' => 'pt_BR', 'place' => 2]) ?></td>
+            </tr>
+        </table>
+        <div class="flex" style="align-items:center; float:inline-end;">
+            <input type="number" class="form-control" placeholder="qtd." min="1" max="50" style="width: 100px; margin: 0px; margin-left: 5px; margin-right: 5px;">
+            <?= $this->Form->button('Adicionar ' . $this->Html->tag('i', '', ['class' => 'fas fa-shopping-cart']), ['class' => 'btn btn-success']) ?>
+        </div>
+    </div>
+    <div class="col-12">
+        <h4>Descrição</h4>
+        <?= $this->Text->autoParagraph($produto->descricao); ?>
     </div>
 </div>
+<script>
+    $(".individual-marginal").mouseenter(function() {
+        let img = $(this).children('img').attr('src');
+        $("#imagem-flexivel").attr('src', img);
+    });
+</script>

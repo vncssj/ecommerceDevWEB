@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\I18n\Time;
-use Cake\Filesystem\Folder;
+use Cake\Event\Event;
 
 /**
  * Produtos Controller
@@ -15,6 +15,14 @@ use Cake\Filesystem\Folder;
  */
 class ProdutosController extends AppController
 {
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('view');
+    }
+
+
     /**
      * Index method
      *
@@ -37,7 +45,7 @@ class ProdutosController extends AppController
     public function view($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => ['Pedidos']
+            'contain' => ['Images']
         ]);
 
         $this->set('produto', $produto);

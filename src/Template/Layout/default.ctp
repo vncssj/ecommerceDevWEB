@@ -14,7 +14,8 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'Ecommerce';
+$cakeDescription = 'Techshop';
+$session = $this->getRequest()->getSession();
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,16 +46,29 @@ $cakeDescription = 'Ecommerce';
 <body>
     <?= $this->Flash->render() ?>
     <div class="jumbotron" style="margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>/img/bg.jpg'); background-position: 30% 70%;">
-        <h1 id="titulo-principal"><a href="<?= $this->request->webroot?>">TechShop</a></h1>
+        <?php if ($session->read('Auth.User')) : ?>
+            <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>! <?= $this->Html->link('Sair ' . $this->Html->Tag('i', '', ['class' => 'fas fa-sign-out-alt']), ['controller' => 'Users', 'action' => 'logout'], ['escape' => false, 'class' => 'btn btn-sm btn-danger']) ?></span>
+        <?php else : ?>
+            <?= $this->Html->link($this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) . ' Entrar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'link-entrar', 'escape' => false]) ?>
+        <?php endif; ?>
+        <h1 id="titulo-principal"><a href="<?= $this->request->webroot ?>">TechShop</a></h1>
     </div>
     <div class="menu">
         <div class="col-5 offset-4">
             <nav>
                 <ul>
-                    <li class=""><a href="<?= $this->request->webroot ?>">Inicio</a></li>
-                    <li class=""><a href="#">Produtos</a></li>
-                    <li class=""><a href="/sobre">Sobre</a></li>
-                    <li class=""><a href="/contate-nos">Contate-nos</a></li>
+                    <a href="<?= $this->request->webroot ?>">
+                        <li>Inicio</li>
+                    </a>
+                    <a href="#">
+                        <li>Produtos</li>
+                    </a>
+                    <a href="/sobre">
+                        <li>Sobre</li>
+                    </a>
+                    <a href="/contate-nos">
+                        <li>Contate-nos</li>
+                    </a>
                 </ul>
             </nav>
         </div>

@@ -10,12 +10,15 @@
     /* font-family: 'Shadows Into Light', cursive; */
     color: #f28181;
 }
+
 #titulo-principal a {
-color: inherit;
+    color: inherit;
 }
+
 #titulo-principal a:hover {
     text-decoration: none;
 }
+
 .titulos {
     margin: 20px;
     background-color: transparent;
@@ -43,7 +46,7 @@ color: inherit;
     padding: 20px;
 }
 
-.menu ul li:hover a {
+.menu ul li:hover {
     color: #f28181;
 }
 
@@ -52,7 +55,7 @@ color: inherit;
     cursor: pointer;
 }
 
-.menu ul li a {
+.menu ul a {
     text-decoration: none;
     color: #FFF;
 }
@@ -84,4 +87,66 @@ footer {
 .titulo-inicial {
     font-family: 'Montserrat', sans-serif;
     margin: 20px;
+}
+
+.link-entrar, .link-entrar:hover, .bem-vindo {
+    position: absolute;
+    right: 10%;
+    color: #f28181;
+    text-decoration: none;
+    font-size: 16pt;
+}
+
+.btn-login {
+    background-color: #f28181;
+    color: #000;
+    padding: 8px;
+}
+
+.btn-login:hover {
+    background-color: #f28181;
+    color: #FFF;
+}
+
+.preco_link {
+    display: flex;
+    background-color: #f28181 !important;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.preco_link a {
+    font-weight: bold;
+    color: #FFF;
+    text-decoration-line: underline;
+}
+
+.preco_link a:hover {
+    background-color: #FFF;
+}
+
+.carousel-produtos {
+    height: 300px;
+    width: 250px !important;
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.individual-marginal {
+    height: 85px;
+    width: 85px;
+    margin: 5px;
+    border-style: solid;
+    border-color: #F28181;
+    border-width: 1px;
+    padding: 1px 1px;
+}
+
+.central-foto {
+    height: 100%;
+    width: 300px;
+    margin: 5px;
+}
+
+.flex {
+    display: flex;
 }
