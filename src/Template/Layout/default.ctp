@@ -76,6 +76,21 @@ $session = $this->getRequest()->getSession();
             <?= $this->Form->input('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
         </div>
     </div>
+    <?php if ($this->request->getParam('controller') === 'Produtos' && $this->request->getParam('action') == 'home') : ?>
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <?= $this->Html->image('slide/banner1.png', ['class' => 'd-block w-100', 'alt' => 'banner 1']) ?>
+                </div>
+                <div class="carousel-item">
+                    <?= $this->Html->image('slide/banner2.png', ['class' => 'd-block w-100', 'alt' => 'banner 2']) ?>
+                </div>
+                <div class="carousel-item">
+                    <?= $this->Html->image('slide/banner2.png', ['class' => 'd-block w-100', 'alt' => 'banner 3']) ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>

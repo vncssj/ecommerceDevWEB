@@ -4,19 +4,6 @@
         padding: 0px;
     }
 </style>
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="webroot/img/slide/banner1.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="webroot/img/slide/banner2.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="webroot/img/slide/banner3.png" class="d-block w-100" alt="...">
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-12 text-center">
         <h2 class="titulo-inicial">Nossos Novos Produtos</h2>
