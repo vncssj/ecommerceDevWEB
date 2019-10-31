@@ -45,7 +45,7 @@ $session = $this->getRequest()->getSession();
 
 <body>
     <?= $this->Flash->render() ?>
-    <div class="jumbotron" style="margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>/img/bg.jpg'); background-position: 30% 70%;">
+    <div class="jumbotron" style="margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>img/bg.jpg'); background-position: 30% 70%;">
         <?php if ($session->read('Auth.User')) : ?>
             <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>! <?= $this->Html->link('Sair ' . $this->Html->Tag('i', '', ['class' => 'fas fa-sign-out-alt']), ['controller' => 'Users', 'action' => 'logout'], ['escape' => false, 'class' => 'btn btn-sm btn-danger']) ?></span>
         <?php else : ?>
