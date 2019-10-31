@@ -122,6 +122,9 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                if ($user['role'] === 'admin') {
+                    return $this->redirect(['action' => 'dashboard']);
+                }
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Usuário ou senha ínvalido, tente novamente'));
@@ -132,4 +135,7 @@ class UsersController extends AppController
     {
         return $this->redirect($this->Auth->logout());
     }
+
+    public function dashboard()
+    { }
 }

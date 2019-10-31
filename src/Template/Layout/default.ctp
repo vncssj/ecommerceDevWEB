@@ -45,7 +45,7 @@ $session = $this->getRequest()->getSession();
 
 <body>
     <?= $this->Flash->render() ?>
-    <div class="jumbotron" style="margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>img/bg.jpg'); background-position: 30% 70%;">
+    <div class="jumbotron" style="border-radius:0%;margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>img/bg.jpg'); background-position: 30% 70%;">
         <?php if ($session->read('Auth.User')) : ?>
             <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>! <?= $this->Html->link('Sair ' . $this->Html->Tag('i', '', ['class' => 'fas fa-sign-out-alt']), ['controller' => 'Users', 'action' => 'logout'], ['escape' => false, 'class' => 'btn btn-sm btn-danger']) ?></span>
         <?php else : ?>
@@ -77,16 +77,20 @@ $session = $this->getRequest()->getSession();
         </div>
     </div>
     <?php if ($this->request->getParam('controller') === 'Produtos' && $this->request->getParam('action') == 'home') : ?>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <?= $this->Html->image('slide/banner1.png', ['class' => 'd-block w-100', 'alt' => 'banner 1']) ?>
-                </div>
-                <div class="carousel-item">
-                    <?= $this->Html->image('slide/banner2.png', ['class' => 'd-block w-100', 'alt' => 'banner 2']) ?>
-                </div>
-                <div class="carousel-item">
-                    <?= $this->Html->image('slide/banner2.png', ['class' => 'd-block w-100', 'alt' => 'banner 3']) ?>
+        <div class="col-12 container-carousel">
+            <div class="col-8 offset-2">
+                <div id="carousel-principal" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <?= $this->Html->image('slide/banner1.png', ['class' => 'd-block w-100', 'alt' => 'banner 1']) ?>
+                        </div>
+                        <div class="carousel-item">
+                            <?= $this->Html->image('slide/banner2.png', ['class' => 'd-block w-100', 'alt' => 'banner 2']) ?>
+                        </div>
+                        <div class="carousel-item">
+                            <?= $this->Html->image('slide/banner3.png', ['class' => 'd-block w-100', 'alt' => 'banner 3']) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

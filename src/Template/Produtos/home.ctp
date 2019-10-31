@@ -10,7 +10,7 @@
     </div>
     <?php if (isset($produtos)) : ?>
         <?php foreach ($produtos as $produto) : ?>
-            <div class="card" style="width: 18rem; margin-left: 5px;margin-right: 5px;">
+            <div class="card card-produtos">
                 <?php if (count($produto->images) > 0) : ?>
                     <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['class' => 'card-img-top']); ?>
                 <?php endif; ?>

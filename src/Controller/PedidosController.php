@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -19,8 +20,11 @@ class PedidosController extends AppController
      */
     public function index()
     {
+        $session = $this->getRequest()->getSession();
+        $user_id = $session->read('Auth.User.id');
         $this->paginate = [
-            'contain' => ['Users']
+            'condition' => ['user_id' => $user_id],
+            'contain' => ['Produtos']
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
@@ -110,4 +114,7 @@ class PedidosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function addProduto($user, $produto)
+    { }
 }

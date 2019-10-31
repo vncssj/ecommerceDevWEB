@@ -1,10 +1,4 @@
-<?php
-
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- */
-?>
+<?= $this->element('menu-dashboard') ?>
 <div class="jumbotron">
     <h3 class="titulos">Usuários</h3>
 </div>

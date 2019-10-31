@@ -26,9 +26,13 @@
                 <td><?= $this->Number->format($produto->valor_venda, ['before' => 'R$', 'locale' => 'pt_BR', 'place' => 2]) ?></td>
             </tr>
         </table>
-        <div class="flex" style="align-items:center; float:inline-end;">
-            <input type="number" class="form-control" placeholder="qtd." min="1" max="50" style="width: 100px; margin: 0px; margin-left: 5px; margin-right: 5px;">
+        <div class="flex" style="align-items:center; float:inline-start;">
+            <input id="input-quantidade" type="number" class="form-control" placeholder="qtd." min="1" max="50" style="width: 100px; margin: 0px; margin-left: 5px; margin-right: 5px;">
             <?= $this->Form->button('Adicionar ' . $this->Html->tag('i', '', ['class' => 'fas fa-shopping-cart']), ['class' => 'btn btn-success']) ?>
+        </div>
+        <div style="float: right">
+            <span>Valor Total:</span>
+            <span id="valor-total"><?= $this->Number->format($produto->valor_venda, ['before' => 'R$', 'locale' => 'pt_BR', 'place' => 2]) ?></span>
         </div>
     </div>
     <div class="col-12">
@@ -40,5 +44,15 @@
     $(".individual-marginal").mouseenter(function() {
         let img = $(this).children('img').attr('src');
         $("#imagem-flexivel").attr('src', img);
+    });
+    $("#input-quantidade").keyup(function() {
+        let qtd = $("#input-quantidade").val();
+        $("#valor-total").empty();
+        $("#valor-total").append("R$" + qtd * <?= $produto->valor_venda ?>);
+    });
+    $("#input-quantidade").change(function() {
+        let qtd = $("#input-quantidade").val();
+        $("#valor-total").empty();
+        $("#valor-total").append("R$" + qtd * <?= $produto->valor_venda ?>);
     });
 </script>

@@ -31,6 +31,7 @@
 .menu {
     background-color: #000;
     display: flex;
+    justify-content: center;
 }
 
 .menu ul {
@@ -89,12 +90,20 @@ footer {
     margin: 20px;
 }
 
-.link-entrar, .link-entrar:hover, .bem-vindo {
+.link-entrar, .bem-vindo {
     position: absolute;
     right: 10%;
     color: #f28181;
+    font-size: 14pt;
+    border: 2px solid;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.link-entrar:hover {
     text-decoration: none;
-    font-size: 16pt;
+    background-color: #f28181;
+    color: #000;
 }
 
 .btn-login {
@@ -110,19 +119,23 @@ footer {
 
 .preco_link {
     display: flex;
-    background-color: #f28181 !important;
+    background-color: #000 !important;
     align-items: center;
     justify-content: space-around;
+    color: #fff;
 }
 
 .preco_link a {
     font-weight: bold;
-    color: #FFF;
-    text-decoration-line: underline;
+    color: #f28181;
+    background-color: #000;
+    border: 2px solid #f28181;
 }
 
 .preco_link a:hover {
-    background-color: #FFF;
+    background-color: #f28181;
+    border-color: #000;
+    color: #000;
 }
 
 .carousel-produtos {
@@ -149,4 +162,67 @@ footer {
 
 .flex {
     display: flex;
+}
+
+.container-carousel {
+    background-color: #000;
+    box-shadow: 0px 1px 8px 2px black;
+}
+
+.card-produtos {
+    width: 17rem;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.btn-compre {
+    border: 1px solid;
+}
+
+.menu-dashboard {
+    width: 100%;
+    background-color: #F28181;
+}
+
+.menu-dashboard ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.menu-dashboard ul li {
+    padding: 8px 16px;
+}
+
+.menu-dashboard ul li:hover {
+    background-color: #FFF;
+}
+
+#produtos a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#produtos a:hover {
+    color: #F28181;
+}
+
+#usuarios a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#usuarios a:hover {
+    color: #F28181;
+}
+
+#pedidos a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#pedidos a:hover {
+    color: #F28181;
 }

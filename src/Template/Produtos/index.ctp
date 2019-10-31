@@ -1,10 +1,4 @@
-<?php
-
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Produto[]|\Cake\Collection\CollectionInterface $produtos
- */
-?>
+<?= $this->element('menu-dashboard') ?>
 <div class="col-12">
     <h3 class="titulos">Produtos</h3>
     <table cellpadding="0" cellspacing="0">
