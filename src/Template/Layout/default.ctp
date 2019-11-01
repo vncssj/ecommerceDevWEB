@@ -33,6 +33,7 @@ $session = $this->getRequest()->getSession();
     <?= $this->Html->css('estilo.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('all.css') ?>
+    <?= $this->Html->script('moeda') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -41,13 +42,14 @@ $session = $this->getRequest()->getSession();
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <?= $this->Flash->render() ?>
     <div class="jumbotron" style="border-radius:0%;margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>img/bg.jpg'); background-position: 30% 70%;">
         <?php if ($session->read('Auth.User')) : ?>
-            <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>! <?= $this->Html->link('Sair ' . $this->Html->Tag('i', '', ['class' => 'fas fa-sign-out-alt']), ['controller' => 'Users', 'action' => 'logout'], ['escape' => false, 'class' => 'btn btn-sm btn-danger']) ?></span>
+            <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>!</span>
         <?php else : ?>
             <?= $this->Html->link($this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) . ' Entrar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'link-entrar', 'escape' => false]) ?>
         <?php endif; ?>
@@ -57,18 +59,10 @@ $session = $this->getRequest()->getSession();
         <div class="col-5 offset-4">
             <nav>
                 <ul>
-                    <a href="<?= $this->request->webroot ?>">
-                        <li>Inicio</li>
-                    </a>
-                    <a href="#">
-                        <li>Produtos</li>
-                    </a>
-                    <a href="/sobre">
-                        <li>Sobre</li>
-                    </a>
-                    <a href="/contate-nos">
-                        <li>Contate-nos</li>
-                    </a>
+                    <?= $this->Html->link($this->Html->tag('li', 'Inicio'), '/', ['escape' => false]) ?>
+                    <?= $this->Html->link($this->Html->tag('li', 'Produtos'), [], ['escape' => false]) ?>
+                    <?= $this->Html->link($this->Html->tag('li', 'Sobre'), ['controller' => 'Pages', 'action' => 'sobre'], ['escape' => false]) ?>
+                    <?= $this->Html->link($this->Html->tag('li', 'Contate-nos'), ['controller' => 'Pages', 'action' => 'contateNos'], ['escape' => false]) ?>
                 </ul>
             </nav>
         </div>

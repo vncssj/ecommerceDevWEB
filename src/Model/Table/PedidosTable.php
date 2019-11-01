@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -62,25 +63,17 @@ class PedidosTable extends Table
 
         $validator
             ->numeric('total')
-            ->greaterThanOrEqual('total', 0)
-            ->requirePresence('total', 'create')
-            ->notEmptyString('total');
+            ->greaterThanOrEqual('total', 0);
 
         $validator
             ->scalar('forma_pagamento')
-            ->maxLength('forma_pagamento', 50)
-            ->requirePresence('forma_pagamento', 'create')
-            ->notEmptyString('forma_pagamento');
-
+            ->maxLength('forma_pagamento', 50);
         $validator
-            ->nonNegativeInteger('parcela')
-            ->requirePresence('parcela', 'create')
-            ->notEmptyString('parcela');
+            ->nonNegativeInteger('parcela');
 
         $validator
             ->numeric('frete')
-            ->greaterThanOrEqual('frete', 0)
-            ->notEmptyString('frete');
+            ->greaterThanOrEqual('frete', 0);
 
         return $validator;
     }

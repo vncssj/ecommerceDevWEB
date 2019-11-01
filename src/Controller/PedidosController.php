@@ -56,13 +56,22 @@ class PedidosController extends AppController
     {
         $pedido = $this->Pedidos->newEntity();
         if ($this->request->is('post')) {
-            $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
-            if ($this->Pedidos->save($pedido)) {
-                $this->Flash->success(__('The pedido has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $session = $this->request->getSession();
+            $sessao = $session->read('Auth.User');
+            if (isset($sessao)) {
+                $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
+                $pedido->user_id = $sessao['id'];
+                if ($this->Pedidos->save($pedido)) {
+                    $this->loadModel('ProdutosPedidos');
+                    $pedidoProduto = $this->ProdutosPedidos->newEntity();
+                    $pedidoProduto->pedido_id = $pedido->id;
+                    $pedidoProduto->produto_id = $this->request->getData()['produto'];
+                    if ($this->ProdutosPedidos->save($pedidoProduto)) {
+                        return $this->redirect(['action' => 'index']);
+                    }
+                }
+                $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
         }
         $users = $this->Pedidos->Users->find('list', ['limit' => 200]);
         $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);

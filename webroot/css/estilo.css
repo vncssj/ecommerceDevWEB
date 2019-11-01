@@ -226,3 +226,25 @@ footer {
 #pedidos a:hover {
     color: #F28181;
 }
+
+#imagem-flexivel {
+    transition: all .3s ease-in;
+    z-index: 2;
+    background-color: transparent;
+}
+
+#imagem-flexivel:hover {
+    margin-left: 100px;
+    box-shadow: 0px 0px 7px 0px;
+    transform: scale(1.5);
+}
+
+.money {
+    border-width: 0 !important;
+    box-shadow: 0px 0px 0px 0px !important;
+    margin-bottom: 0px !important;
+    padding: 0px 0px !important;
+    text-align: right;
+    float: right;
+    width: auto;
+}
