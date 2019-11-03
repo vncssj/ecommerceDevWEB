@@ -200,30 +200,12 @@ footer {
     background-color: #FFF;
 }
 
-#produtos a {
+.link-dash a {
     color: #FFF;
     text-decoration: none;
 }
 
-#produtos a:hover {
-    color: #F28181;
-}
-
-#usuarios a {
-    color: #FFF;
-    text-decoration: none;
-}
-
-#usuarios a:hover {
-    color: #F28181;
-}
-
-#pedidos a {
-    color: #FFF;
-    text-decoration: none;
-}
-
-#pedidos a:hover {
+.link-dash a:hover {
     color: #F28181;
 }
 
@@ -247,4 +229,26 @@ footer {
     text-align: right;
     float: right;
     width: auto;
+}
+
+.btn-add {
+    background-color: #F28181;
+    padding: 7px 14px;
+    color: #FFF;
+    height: min-content;
+    border: 2px solid #f28181;
+}
+.btn-add:hover, .btn-add:focus  {
+    color: #f28181;
+    background-color: #FFF;
+    text-decoration: none;
+}
+
+.topo-dash {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

@@ -1,38 +1,34 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Categoria[]|\Cake\Collection\CollectionInterface $categorias
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Categoria'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="categorias index large-9 medium-8 columns content">
-    <h3><?= __('Categorias') ?></h3>
+<div class="col-12">
+    <div class="topo-dash">
+        <h3>Categorias</h3>
+        <?= $this->html->link($this->Html->tag('i', '', ['class' => 'fa fa-plus']) . ' Categoria', ['action' => 'add'], ['class' => 'btn-add', 'escape' => false]) ?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($categorias as $categoria): ?>
-            <tr>
-                <td><?= $this->Number->format($categoria->id) ?></td>
-                <td><?= h($categoria->nome) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $categoria->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $categoria->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $categoria->id], ['confirm' => __('Are you sure you want to delete # {0}?', $categoria->id)]) ?>
-                </td>
-            </tr>
+            <?php foreach ($categorias as $categoria) : ?>
+                <tr>
+                    <td><?= $this->Number->format($categoria->id) ?></td>
+                    <td><?= h($categoria->nome) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $categoria->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $categoria->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $categoria->id], ['confirm' => __('Are you sure you want to delete # {0}?', $categoria->id)]) ?>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </tbody>
     </table>

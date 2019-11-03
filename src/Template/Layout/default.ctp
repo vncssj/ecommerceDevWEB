@@ -70,6 +70,9 @@ $session = $this->getRequest()->getSession();
             <?= $this->Form->input('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
         </div>
     </div>
+    <?php if ($session->read('Auth.User') !== null && $session->read('Auth.User.role') === 'admin') : ?>
+        <?= $this->element('menu-dashboard') ?>
+    <?php endif; ?>
     <?php if ($this->request->getParam('controller') === 'Produtos' && $this->request->getParam('action') == 'home') : ?>
         <div class="col-12 container-carousel">
             <div class="col-8 offset-2">

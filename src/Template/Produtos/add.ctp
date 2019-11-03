@@ -3,8 +3,13 @@
     <fieldset>
         <legend class="titulos">Novo Produto</legend>
 
-        <div class="col-12">
-            <?= $this->Form->control('nome'); ?>
+        <div class="form-inline">
+            <div class="col-8">
+                <?= $this->Form->control('nome'); ?>
+            </div>
+            <div class="col-4">
+                <?= $this->Form->control('categoria_id', ['style' => 'margin-bottom: 1rem; padding: 0;', 'empty' => 'Categoria']); ?>
+            </div>
         </div>
         <div class="form-inline">
 

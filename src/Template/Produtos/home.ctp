@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-footer preco_link">
                     <div class="preco">
-                        <?= $this->Number->format($produto->valor_venda, ['before' => 'R$ ', 'locale' => 'pt_BR']) ?>
+                        <?= $this->Number->format($produto->valor_venda, ['before' => 'R$ ', 'locale' => 'pt_BR', 'places' => 2]) ?>
                     </div>
                     <a href="produtos/view/<?= $produto->id ?>" class="btn btn-compre">Compre já</a>
                 </div>

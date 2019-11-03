@@ -68,8 +68,8 @@ class ProdutosController extends AppController
             }
             $this->Flash->error(__('The produto could not be saved. Please, try again.'));
         }
-        $pedidos = $this->Produtos->Pedidos->find('list', ['limit' => 200]);
-        $this->set(compact('produto', 'pedidos'));
+        $categorias = $this->Produtos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $this->set(compact('produto', 'categorias'));
     }
 
     /**
@@ -119,7 +119,7 @@ class ProdutosController extends AppController
 
     public function home()
     {
-        $produtos = $this->Produtos->find('all')->contain('Images');
+        $produtos = $this->Produtos->find('all')->limit(5)->orderDesc('created')->contain('Images');
         $this->set(compact('produtos'));
     }
 

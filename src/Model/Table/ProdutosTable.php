@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Produtos Model
  *
- * @property &\Cake\ORM\Association\BelongsTo $Categorias
+ * @property \App\Model\Table\CategoriasTable&\Cake\ORM\Association\BelongsTo $Categorias
  * @property \App\Model\Table\ImagesTable&\Cake\ORM\Association\HasMany $Images
  * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\BelongsToMany $Pedidos
  *
@@ -21,6 +21,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Produto patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Produto[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Produto findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ProdutosTable extends Table
 {
@@ -37,6 +39,8 @@ class ProdutosTable extends Table
         $this->setTable('produtos');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Categorias', [
             'foreignKey' => 'categoria_id',

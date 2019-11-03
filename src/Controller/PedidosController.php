@@ -21,14 +21,15 @@ class PedidosController extends AppController
     public function index()
     {
         $session = $this->getRequest()->getSession();
-        $user_id = $session->read('Auth.User.id');
+        $user['id'] = $session->read('Auth.User.id');
+        $user['role'] = $session->read('Auth.User.role');
         $this->paginate = [
-            'condition' => ['user_id' => $user_id],
+            'condition' => ['user_id' => $user['id']],
             'contain' => ['Produtos']
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
-        $this->set(compact('pedidos'));
+        $this->set(compact('pedidos','user'));
     }
 
     /**

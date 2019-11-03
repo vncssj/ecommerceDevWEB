@@ -9,11 +9,14 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $nome
  * @property string|null $descricao
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  * @property float $valor_compra
  * @property float|null $valor_venda
  * @property string $status
  * @property int $categoria_id
  *
+ * @property \App\Model\Entity\Categoria $categoria
  * @property \App\Model\Entity\Image[] $images
  * @property \App\Model\Entity\Pedido[] $pedidos
  */
@@ -31,10 +34,13 @@ class Produto extends Entity
     protected $_accessible = [
         'nome' => true,
         'descricao' => true,
+        'created' => true,
+        'modified' => true,
         'valor_compra' => true,
         'valor_venda' => true,
         'status' => true,
         'categoria_id' => true,
+        'categoria' => true,
         'images' => true,
         'pedidos' => true
     ];
