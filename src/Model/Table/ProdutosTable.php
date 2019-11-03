@@ -9,7 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Produtos Model
  *
- * @property &\Cake\ORM\Association\HasMany $Images
+ * @property &\Cake\ORM\Association\BelongsTo $Categorias
+ * @property \App\Model\Table\ImagesTable&\Cake\ORM\Association\HasMany $Images
  * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\BelongsToMany $Pedidos
  *
  * @method \App\Model\Entity\Produto get($primaryKey, $options = [])
@@ -37,6 +38,10 @@ class ProdutosTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Categorias', [
+            'foreignKey' => 'categoria_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Images', [
             'foreignKey' => 'produto_id'
         ]);
@@ -71,12 +76,32 @@ class ProdutosTable extends Table
 
         $validator
             ->numeric('valor_compra')
+            ->requirePresence('valor_compra', 'create')
             ->notEmptyString('valor_compra');
 
         $validator
             ->numeric('valor_venda')
             ->allowEmptyString('valor_venda');
 
+        $validator
+            ->scalar('status')
+            ->maxLength('status', 50)
+            ->notEmptyString('status');
+
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['categoria_id'], 'Categorias'));
+
+        return $rules;
     }
 }
