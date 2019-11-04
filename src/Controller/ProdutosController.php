@@ -6,6 +6,8 @@ use App\Controller\AppController;
 use Cake\I18n\Time;
 use Cake\Event\Event;
 
+use function Psy\debug;
+
 /**
  * Produtos Controller
  *
@@ -119,8 +121,9 @@ class ProdutosController extends AppController
 
     public function home()
     {
-        $produtos = $this->Produtos->find('all')->limit(5)->orderDesc('created')->contain('Images');
-        $this->set(compact('produtos'));
+        $produtos = $this->Produtos->find('all')->limit(4)->orderDesc('created')->contain('Images');
+        $categorias = $this->Produtos->Categorias->find('all')->contain(['Produtos' => ['Images']]);
+        $this->set(compact('produtos', 'categorias'));
     }
 
     public function Images($produto)

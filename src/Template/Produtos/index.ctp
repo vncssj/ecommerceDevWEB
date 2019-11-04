@@ -1,5 +1,8 @@
 <div class="col-12">
-    <h3 class="titulos">Produtos</h3>
+    <div class="topo-dash">
+        <h3>Produtos</h3>
+        <?= $this->html->link($this->Html->tag('i', '', ['class' => 'fa fa-plus']) . ' Produto', ['action' => 'add'], ['class' => 'btn-add', 'escape' => false]) ?>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
