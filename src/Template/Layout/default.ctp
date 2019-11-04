@@ -27,8 +27,7 @@ $session = $this->getRequest()->getSession();
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
-
+    <?= $this->Html->meta('icon', '/favicon.ico', ['type' => 'icon']) ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('estilo.css') ?>
     <?= $this->Html->css('style.css') ?>
