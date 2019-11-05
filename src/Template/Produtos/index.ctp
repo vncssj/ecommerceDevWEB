@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="topo-dash">
         <h3>Produtos</h3>
-        <?= $this->html->link($this->Html->tag('i', '', ['class' => 'fa fa-plus']) . ' Produto', ['action' => 'add'], ['class' => 'btn-add', 'escape' => false]) ?>
+        <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-plus']) . ' Produto', ['action' => 'add'], ['class' => 'btn-add', 'escape' => false]) ?>
     </div>
     <table cellpadding="0" cellspacing="0">
         <thead>

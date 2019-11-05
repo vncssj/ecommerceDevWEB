@@ -38,8 +38,9 @@
 </div>
 <div class="row" style="margin-left: 0px; marin-right: 0px;">
     <?php foreach ($images as $image) : ?>
-        <div class="card col-3" style="width: 18rem;">
+        <div class="card col-3 img-card" style="width: 18rem;">
             <?= $this->Html->image('produtos/' . $image->nome, ['class' => 'card-img-top']) ?>
+            <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-times']), ['controller' => 'images', 'action' => 'delete', $image->id, $image->produto_id], ['class' => 'btn-excluir', 'escape' => false]) ?>
         </div>
     <?php endforeach; ?>
 </div>

@@ -1,4 +1,3 @@
-<?= $this->element('menu-dashboard') ?>
 <div class="jumbotron">
     <h3 class="titulos">Usuários</h3>
 </div>

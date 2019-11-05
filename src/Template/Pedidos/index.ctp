@@ -1,4 +1,3 @@
-<?= $this->element('menu-dashboard') ?>
 <div class="col-12">
     <?php if ($user['role'] === 'admin') : ?>
         <h3>Pedidos</h3>

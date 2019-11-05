@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -96,7 +97,7 @@ class ImagesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null, $produto = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $image = $this->Images->get($id);
@@ -106,6 +107,6 @@ class ImagesController extends AppController
             $this->Flash->error(__('The image could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Produtos', 'action' => 'images', $produto]);
     }
 }

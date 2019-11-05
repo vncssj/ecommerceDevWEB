@@ -46,13 +46,13 @@ $session = $this->getRequest()->getSession();
 
 <body>
     <?= $this->Flash->render() ?>
-    <div class="jumbotron" style="border-radius:0%;margin-bottom: 0; background-image: url('<?= $this->request->webroot ?>img/bg.jpg'); background-position: 30% 70%;">
+    <div class="jumbotron" style="border-radius:0%;margin-bottom: 0; background-image: url('<?= $this->request->getAttribute("webroot") ?>img/bg.jpg'); background-position: 30% 70%;">
         <?php if ($session->read('Auth.User')) : ?>
             <span class="bem-vindo"> <?= $this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) ?> Olá <?= $session->read('Auth.User.nome') ?>!</span>
         <?php else : ?>
             <?= $this->Html->link($this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) . ' Entrar', ['controller' => 'Users', 'action' => 'login'], ['class' => 'link-entrar', 'escape' => false]) ?>
         <?php endif; ?>
-        <h1 id="titulo-principal"><a href="<?= $this->request->webroot ?>">TechShop</a></h1>
+        <h1 id="titulo-principal"><a href="<?= $this->request->getAttribute("webroot") ?>">TechShop</a></h1>
     </div>
     <div class="menu">
         <div class="col-5 offset-4">
@@ -66,7 +66,7 @@ $session = $this->getRequest()->getSession();
             </nav>
         </div>
         <div class="search">
-            <?= $this->Form->input('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
+            <?= $this->Form->control('pesquisar', ['placeholder' => 'Encontre seu produto...', 'label' => false, 'class' => 'search-input']); ?>
         </div>
     </div>
     <?php if ($session->read('Auth.User') !== null && $session->read('Auth.User.role') === 'admin') : ?>
