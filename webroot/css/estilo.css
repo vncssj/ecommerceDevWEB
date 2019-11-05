@@ -282,3 +282,14 @@ footer {
 .img-card:hover .btn-excluir {
     display: block;
 }
+
+.td-image {
+    padding: 0;
+    max-height: 100px;
+    border-bottom: 1px solid #F28181;
+    margin-bottom: 5px;
+}
+
+.td-image img {
+    height: 150px;
+}

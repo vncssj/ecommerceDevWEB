@@ -25,11 +25,20 @@ class PedidosController extends AppController
         $user['role'] = $session->read('Auth.User.role');
         $this->paginate = [
             'condition' => ['user_id' => $user['id']],
-            'contain' => ['Produtos']
+            'contain' => ['Produtos' => ['Images']]
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
-        $this->set(compact('pedidos','user'));
+        $this->set(compact('pedidos', 'user'));
+    }
+
+
+    public function carrinho()
+    {
+        $session = $this->getRequest()->getSession();
+        $user_id = $session->read('Auth.User.id');
+        $pedido = $this->Pedidos->find('all')->contain(['Produtos' => ['Images']])->where(['user_id' => $user_id, 'status' => 'cart'])->first();
+        $this->set(compact('pedido'));
     }
 
     /**
@@ -60,15 +69,25 @@ class PedidosController extends AppController
             $session = $this->request->getSession();
             $sessao = $session->read('Auth.User');
             if (isset($sessao)) {
-                $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
-                $pedido->user_id = $sessao['id'];
-                if ($this->Pedidos->save($pedido)) {
-                    $this->loadModel('ProdutosPedidos');
-                    $pedidoProduto = $this->ProdutosPedidos->newEntity();
-                    $pedidoProduto->pedido_id = $pedido->id;
-                    $pedidoProduto->produto_id = $this->request->getData()['produto'];
-                    if ($this->ProdutosPedidos->save($pedidoProduto)) {
-                        return $this->redirect(['action' => 'index']);
+                $pedido_existente = $this->Pedidos->find('all')->where(['status' => 'cart', 'user_id' => $sessao['id']]);
+
+                $this->loadModel('ProdutosPedidos');
+                $pedidoProduto = $this->ProdutosPedidos->newEntity();
+                $pedidoProduto->pedido_id = $pedido_existente->toArray()[0]->id;
+                $pedidoProduto->produto_id = $this->request->getData()['produto'];
+                $pedidoProduto->quantidade = $this->request->getData()['quantidade'];
+                if ($pedido_existente->count() > 0) {
+                    $pedidoProduto = $this->ProdutosPedidos->save($pedidoProduto);
+                    if ($pedidoProduto) {
+                        return $this->redirect(['action' => 'carrinho']);
+                    }
+                } else {
+                    $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
+                    $pedido->user_id = $sessao['id'];
+                    if ($this->Pedidos->save($pedido)) {
+                        if ($this->ProdutosPedidos->save($pedidoProduto)) {
+                            return $this->redirect(['action' => 'carrinho']);
+                        }
                     }
                 }
                 $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
