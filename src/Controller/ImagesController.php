@@ -101,12 +101,14 @@ class ImagesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $image = $this->Images->get($id);
-        if ($this->Images->delete($image)) {
-            $this->Flash->success(__('The image has been deleted.'));
+
+        if (unlink('img/produtos/' . $image->nome)) {
+            if ($this->Images->delete($image)) {
+                $this->Flash->success(__('The image has been deleted.'));
+            }
         } else {
             $this->Flash->error(__('The image could not be deleted. Please, try again.'));
         }
-
         return $this->redirect(['controller' => 'Produtos', 'action' => 'images', $produto]);
     }
 }
