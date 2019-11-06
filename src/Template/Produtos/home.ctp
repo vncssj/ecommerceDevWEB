@@ -11,9 +11,13 @@
     <?php if (isset($produtos)) : ?>
         <?php foreach ($produtos as $produto) : ?>
             <div class="card card-produtos">
-                <?php if (count($produto->images) > 0) : ?>
-                    <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['class' => 'card-img-top']); ?>
-                <?php endif; ?>
+                <div class="card-image">
+                    <?php if (count($produto->images) > 0) : ?>
+                        <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['class' => 'card-img-top']); ?>
+                    <?php else : ?>
+                        <?= $this->Html->image('sem-imagem.png', ['class' => 'card-img-top']); ?>
+                    <?php endif; ?>
+                </div>
                 <div class="card-body text-center">
                     <h5 class="card-title"><?= $produto->nome ?></h5>
                 </div>
@@ -35,9 +39,13 @@
         <?php if (isset($produtos)) : ?>
             <?php foreach ($categoria->produtos as $produto) : ?>
                 <div class="card card-produtos">
-                    <?php if (count($produto->images) > 0) : ?>
-                        <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['class' => 'card-img-top']); ?>
-                    <?php endif; ?>
+                    <div class="card-image">
+                        <?php if (count($produto->images) > 0) : ?>
+                            <?= $this->Html->image('produtos/' . $produto->images[0]->nome, ['class' => 'card-img-top']); ?>
+                        <?php else : ?>
+                            <?= $this->Html->image('sem-imagem.png', ['class' => 'card-img-top']); ?>
+                        <?php endif; ?>
+                    </div>
                     <div class="card-body text-center">
                         <h5 class="card-title"><?= $produto->nome ?></h5>
                     </div>
@@ -51,5 +59,4 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-
 <?php endforeach; ?>

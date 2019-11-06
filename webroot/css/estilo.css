@@ -169,10 +169,25 @@ footer {
     box-shadow: 0px 1px 8px 2px black;
 }
 
+.card-image {
+    display: grid;
+    align-items: center;
+    height: 100%;
+    max-height: 250px;
+}
+
+.card-body {
+    height: 100px;
+}
+
 .card-produtos {
     width: 17rem;
     margin-left: 2px;
     margin-right: 2px;
+}
+
+.card-produtos img {
+    max-height: max-content;
 }
 
 .btn-compre {
@@ -288,8 +303,95 @@ footer {
     max-height: 100px;
     border-bottom: 1px solid #F28181;
     margin-bottom: 5px;
+    width: 100px;
 }
 
 .td-image img {
-    height: 150px;
+    max-height: 150px;
+}
+
+.th-carrinho {
+    width: 20%;
+}
+
+.td-preco {
+    text-align: center;
+}
+
+.carrinho-preco-produto {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10pt;
+}
+
+.carrinho-titulo-produto {
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10pt;
+}
+
+.carrinho-qtd-produto {
+    width: 40px !important;
+    float: right;
+    text-align: center;
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    box-shadow: inset 0 0 0 0 !important;
+    background-color: #FFF !important;
+    font-weight: bold;
+}
+
+.btn-less, .btn-less:hover, .btn-less:focus {
+    height: 2.3125rem;
+    width: 30px;
+    padding: 5px;
+    background-color: white;
+    color: #000;
+    border: 1px solid #f5f5f5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    box-shadow: 0 0 0px 0px;
+    color: rgba(0, 0, 0, 0.75);
+    border-right-width: 0;
+}
+
+.btn-plus, .btn-plus:hover, .btn-plus:focus {
+    height: 2.3125rem;
+    width: 30px;
+    padding: 5px;
+    background-color: white;
+    color: #000;
+    border: 1px solid #f5f5f5;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ccc;
+    box-shadow: 0 0 0px 0px;
+    color: rgba(0, 0, 0, 0.75);
+    border-left-width: 0;
+}
+
+.td-quantidade {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.th-nome {
+    width: 40%;
+    text-align: center;
+}
+
+.th-qtd {
+    width: 15%;
+    text-align: center;
+}
+
+.th-preco {
+    width: 25%;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

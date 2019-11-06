@@ -94,6 +94,8 @@ $session = $this->getRequest()->getSession();
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
+    <div class="bloco-continuar">
+    </div>
     <footer class="text-center">
         Copyright © 2019 | TechShop
     </footer>

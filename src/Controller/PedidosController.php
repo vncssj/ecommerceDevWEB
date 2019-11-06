@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
+use function Psy\debug;
+
 /**
  * Pedidos Controller
  *
@@ -65,26 +67,56 @@ class PedidosController extends AppController
     public function add()
     {
         $pedido = $this->Pedidos->newEntity();
+
         if ($this->request->is('post')) {
             $session = $this->request->getSession();
             $sessao = $session->read('Auth.User');
-            if (isset($sessao)) {
-                $pedido_existente = $this->Pedidos->find('all')->where(['status' => 'cart', 'user_id' => $sessao['id']]);
 
-                $this->loadModel('ProdutosPedidos');
-                $pedidoProduto = $this->ProdutosPedidos->newEntity();
-                $pedidoProduto->pedido_id = $pedido_existente->toArray()[0]->id;
-                $pedidoProduto->produto_id = $this->request->getData()['produto'];
-                $pedidoProduto->quantidade = $this->request->getData()['quantidade'];
+            if (isset($sessao)) {
+                $pedido_existente = $this->Pedidos->find('all')->contain('Produtos')->where(['status' => 'cart', 'user_id' => $sessao['id']]);
+
                 if ($pedido_existente->count() > 0) {
+                    $produtos_em_pedido = $pedido_existente->toArray()[0]->produtos;
+                    $dados = $this->request->getData();
+
+                    foreach ($produtos_em_pedido as $produto) {
+
+                        if ($produto->id == $dados['produto']) {
+                            $this->loadModel('ProdutosPedidos');
+                            $pedido = $this->ProdutosPedidos->find('list')
+                                ->where([
+                                    'pedido_id' => $pedido_existente->toArray()[0]->id,
+                                    'produto_id' => $produto->id
+                                ]);
+
+                            $pedido = $this->ProdutosPedidos->get($pedido->toArray());
+                            $pedido->quantidade += $dados['quantidade'];
+                            if ($this->ProdutosPedidos->save($pedido)) {
+                                echo "AAA";
+                                return $this->redirect(['action' => 'carrinho']);
+                            }
+                        }
+                    }
+
+                    $this->loadModel('ProdutosPedidos');
+                    $pedidoProduto = $this->ProdutosPedidos->newEntity();
+                    $pedidoProduto->pedido_id = $pedido_existente->toArray()[0]->id;
+                    $pedidoProduto->produto_id = $this->request->getData()['produto'];
+                    $pedidoProduto->quantidade = $this->request->getData()['quantidade'];
                     $pedidoProduto = $this->ProdutosPedidos->save($pedidoProduto);
+
                     if ($pedidoProduto) {
                         return $this->redirect(['action' => 'carrinho']);
                     }
                 } else {
-                    $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
+                    $this->loadModel('ProdutosPedidos');
                     $pedido->user_id = $sessao['id'];
                     if ($this->Pedidos->save($pedido)) {
+                        $pedidoProduto = $this->ProdutosPedidos->newEntity();
+                        $pedidoProduto->pedido_id = $pedido_existente->toArray()[0]->id;
+                        $pedidoProduto->produto_id = $this->request->getData()['produto'];
+                        $pedidoProduto->quantidade = $this->request->getData()['quantidade'];
+                        $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
                         if ($this->ProdutosPedidos->save($pedidoProduto)) {
                             return $this->redirect(['action' => 'carrinho']);
                         }
@@ -144,6 +176,6 @@ class PedidosController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addProduto($user, $produto)
+    public function addProdutoToPedido()
     { }
 }
