@@ -119,9 +119,8 @@ class ProdutosController extends AppController
 
     public function home()
     {
-        $produtos = $this->Produtos->find('all')->limit(4)->orderDesc('created')->contain('Images');
-        $categorias = $this->Produtos->Categorias->find('all')->contain('Images');
-        $this->set(compact('produtos', $categorias));
+        $produtos = $this->Produtos->find('all')->limit(5)->orderDesc('created')->contain('Images');
+        $this->set(compact('produtos'));
     }
 
     public function Images($produto)
