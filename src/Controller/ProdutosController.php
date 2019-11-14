@@ -120,7 +120,9 @@ class ProdutosController extends AppController
     public function home()
     {
         $produtos = $this->Produtos->find('all')->limit(5)->orderDesc('created')->contain('Images');
-        $this->set(compact('produtos'));
+        $categorias = $this->Produtos->Categorias->find('all')
+            ->contain(['produtos' => 'Images']);
+        $this->set(compact('produtos', 'categorias'));
     }
 
     public function Images($produto)
