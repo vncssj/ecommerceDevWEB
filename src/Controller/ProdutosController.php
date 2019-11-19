@@ -19,7 +19,7 @@ class ProdutosController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('view');
+        $this->Auth->allow(['view', 'all']);
     }
 
 
@@ -119,7 +119,7 @@ class ProdutosController extends AppController
 
     public function home()
     {
-        $produtos = $this->Produtos->find('all')->limit(5)->orderDesc('created')->contain('Images');
+        $produtos = $this->Produtos->find('all')->limit(4)->orderDesc('created')->contain('Images');
         $categorias = $this->Produtos->Categorias->find('all')
             ->contain(['produtos' => 'Images']);
         $this->set(compact('produtos', 'categorias'));
@@ -147,5 +147,13 @@ class ProdutosController extends AppController
         }
         $images = $this->Produtos->Images->find('all')->where(['produto_id' => $produto]);
         $this->set(compact('images'));
+    }
+
+    public function all()
+    {
+        $produtos = $this->Produtos->find('all')->contain('Images');
+        $categorias = $this->Produtos->Categorias->find('list', ['valueField' => 'nome']);
+        $this->set(compact('produtos', 'categorias'));
+        $this->viewBuilder()->setLayout('container');
     }
 }
