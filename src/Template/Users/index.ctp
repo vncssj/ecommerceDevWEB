@@ -1,7 +1,4 @@
-<?= $this->element('menu-dashboard') ?>
-<div class="jumbotron">
-    <h3 class="titulos">Usuários</h3>
-</div>
+<h3 class="titulos">Usuários</h3>
 <table class="table">
     <thead>
         <tr>

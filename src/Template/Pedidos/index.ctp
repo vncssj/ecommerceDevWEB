@@ -1,10 +1,5 @@
-<?= $this->element('menu-dashboard') ?>
 <div class="col-12">
-    <?php if ($user['role'] === 'admin') : ?>
-        <h3>Pedidos</h3>
-    <?php else :  ?>
-        <h3>Meu Carrinho</h3>
-    <?php endif;  ?>
+    <h3 class="titulos">Pedidos</h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

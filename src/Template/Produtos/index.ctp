@@ -15,8 +15,8 @@
                 <tr>
                     <td><?= $this->Number->format($produto->id) ?></td>
                     <td><?= h($produto->nome) ?></td>
-                    <td><?= $this->Number->format($produto->valor_compra) ?></td>
-                    <td><?= $this->Number->format($produto->valor_venda) ?></td>
+                    <td><?= $this->Number->format($produto->valor_compra, ['locale' => 'pt_br', 'places' => 2, 'before' => 'R$ ']) ?></td>
+                    <td><?= $this->Number->format($produto->valor_venda, ['locale' => 'pt_br', 'places' => 2, 'before' => 'R$ ']) ?></td>
                     <td class="actions">
                         <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'far fa-images']), ['action' => 'images', $produto->id], ['class' => 'btn btn-sm btn-info', 'escape' => false, 'title' => 'Imagens']) ?>
                         <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'far fa-file-alt']), ['action' => 'view', $produto->id], ['class' => 'btn btn-sm btn-info', 'escape' => false, 'title' => 'Visualizar Produto']) ?>
