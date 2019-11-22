@@ -53,7 +53,7 @@ $session = $this->getRequest()->getSession();
                 <div class="dropdown">
                     <?= $this->Html->link($this->Html->Tag('i', '', ['class' => 'fas fa-user-circle']) . ' Olá ' . $session->read('Auth.User.nome') . '!', '#', ['role' => 'button', 'id' => 'dropdown-user', 'data-toggle' => 'dropdown', 'escape' => false, 'class' => 'bem-vindo']) ?>
                     <div class="dropdown-menu" aria-labelledby="dropdown-user">
-                        <?= $this->Html->link('Carrinho', ['controller' => 'Pedidos', 'action' => 'carrinho'], ['class' => 'dropdown-item link-conta', 'escape' => false]) ?>
+                        <?= $this->Html->link('Carrinho', ['controller' => 'Users', 'action' => 'cart'], ['class' => 'dropdown-item link-conta', 'escape' => false]) ?>
                         <?= $this->Html->link('Minha Conta', ['controller' => 'Users', 'action' => 'minhaConta'], ['class' => 'dropdown-item link-conta', 'escape' => false]) ?>
                         <?= $this->Html->link('Sair', ['controller' => 'Users', 'action' => 'logout'], ['class' => 'dropdown-item link-conta', 'escape' => false]) ?>
                     </div>
