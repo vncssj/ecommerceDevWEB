@@ -138,4 +138,9 @@ class UsersController extends AppController
 
     public function dashboard()
     { }
+
+    public function cart()
+    {
+        # code...
+    }
 }

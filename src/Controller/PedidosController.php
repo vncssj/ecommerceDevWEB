@@ -29,7 +29,7 @@ class PedidosController extends AppController
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
-        $this->set(compact('pedidos','user'));
+        $this->set(compact('pedidos', 'user'));
     }
 
     /**
@@ -60,18 +60,60 @@ class PedidosController extends AppController
             $session = $this->request->getSession();
             $sessao = $session->read('Auth.User');
             if (isset($sessao)) {
-                $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
-                $pedido->user_id = $sessao['id'];
-                if ($this->Pedidos->save($pedido)) {
+
+                $existente = $this->Pedidos->find('list')->where(['status' => 'cart']);
+                //VERIFICA SE EXISTE ALGUM CARRINHO EM ABERTO
+                // CASO EXISTA CARRINHO
+                if ($existente->count() > 0) {
+                    $pedido = $existente->first();
+
                     $this->loadModel('ProdutosPedidos');
-                    $pedidoProduto = $this->ProdutosPedidos->newEntity();
-                    $pedidoProduto->pedido_id = $pedido->id;
-                    $pedidoProduto->produto_id = $this->request->getData()['produto'];
-                    if ($this->ProdutosPedidos->save($pedidoProduto)) {
-                        return $this->redirect(['action' => 'index']);
+                    $produto = $this->ProdutosPedidos->find('list')->where(['produto_id' => $this->request->getData()['produto'], 'pedido_id' => $pedido]);
+                    $newProduto = $this->ProdutosPedidos->newEntity();
+                    // CASO HAJA ESTE PRODUTO NO CARRINHO FARÁ UPDATE DA QUANTIDADE
+                    if ($produto->count() > 0) {
+
+                        $existente = $this->ProdutosPedidos->get($produto->first());
+                        $existente->quantidade += $this->request->getData()['quantidade'];
+
+                        // SE ADD PRODUTO AO CARRINHO
+                        if ($this->ProdutosPedidos->save($existente)) {
+                            $this->redirect(['controller' => 'Users', 'action' => 'cart']);
+                        } else {
+                            $this->Flash->error(__('Erro ao Adicionar Produto ao Carrinho'));
+                        }
+
+                        // CASO NÃO HAJA ESTE PRODUTO NO CARRINHO
+                    } else {
+                        $newProduto = $this->ProdutosPedidos->patchEntity($newProduto, ['pedido_id' => $pedido, 'produto_id' => $this->request->getData()['produto'], 'quantidade' => $this->request->getData()['quantidade']]);
+                        if ($this->ProdutosPedidos->save($newProduto)) {
+                            $this->redirect(['controller' => 'Users', 'action' => 'cart']);
+                        } else {
+                            $this->Flash->error(__('Erro ao Adicionar Produto ao Carrinho'));
+                        }
+                    }
+
+                    // CASO NÃO EXISTA CARRINHO
+                } else {
+
+                    //CRIA CARRINHO
+                    $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
+                    $pedido->user_id = $sessao['id'];
+
+                    // SE SALVAR ADICIONA PRODUTO A CARRINHO
+                    if ($this->Pedidos->save($pedido)) {
+                        $this->loadModel('ProdutosPedidos');
+                        $newProduto = $this->ProdutosPedidos->newEntity();
+                        $newProduto = $this->ProdutosPedidos->patchEntity($newProduto, ['pedido_id' => $pedido->id, 'produto_id' => $this->request->getData()['produto'], 'quantidade' => $this->request->getData()['quantidade']]);
+                        if ($this->ProdutosPedidos->save($newProduto)) {
+                            $this->redirect(['controller' => 'Users', 'action' => 'cart']);
+                        } else {
+                            $this->Flash->error(__('Erro ao Adicionar Produto ao Carrinho'));
+                        }
+                    } else {
+                        $this->Flash->error(__('Erro ao criar Carrinho.'));
                     }
                 }
-                $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
             }
         }
         $users = $this->Pedidos->Users->find('list', ['limit' => 200]);
