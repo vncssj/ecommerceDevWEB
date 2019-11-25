@@ -141,6 +141,10 @@ class UsersController extends AppController
 
     public function cart()
     {
-        # code...
+        $this->loadModel('Pedidos');
+        $pedido = $this->Pedidos->find('list')->first();
+        $this->loadModel('ProdutosPedidos');
+        $produtos = $this->ProdutosPedidos->find('all')->contain(['Produtos' => ['Images', 'Categorias']]);
+        $this->set(compact('produtos'));
     }
 }

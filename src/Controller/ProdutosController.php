@@ -19,7 +19,7 @@ class ProdutosController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['view', 'all']);
+        $this->Auth->allow(['view', 'all', 'filtro']);
     }
 
 
@@ -155,5 +155,10 @@ class ProdutosController extends AppController
         $categorias = $this->Produtos->Categorias->find('list', ['valueField' => 'nome']);
         $this->set(compact('produtos', 'categorias'));
         $this->viewBuilder()->setLayout('container');
+    }
+    public function filtro()
+    {
+        $dados = $this->request->getData();
+        die;
     }
 }

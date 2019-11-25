@@ -515,3 +515,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .card:hover .card-footer-hover {
     visibility: visible;
 }
+
+.nome-produto {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dados-produto {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11pt;
+    color: #666;
+}

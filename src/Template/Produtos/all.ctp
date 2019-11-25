@@ -2,6 +2,7 @@
 
     <div class="filtros-produtos">
         <legend class="text-center">FILTROS</legend>
+        <?= $this->Form->create(null, ['id' => 'form-filtro']) ?>
         <?= $this->Form->control('categorias', ['options' => $categorias, 'empty' => 'Categorias', 'label' => false]) ?>
         <div class="form-inline">
             <?= $this->Form->control('preco-min', ['type' => 'range', 'value' => 0, 'label' => 'Preço mínimo', 'value' => '0', 'min' => 0, 'max' => 10000]) ?>
@@ -11,8 +12,9 @@
             <?= $this->Form->control('preco-max', ['type' => 'range', 'value' => 0, 'label' => 'Preço máximo', 'value' => '10000', 'min' => 0, 'max' => 10000]) ?>
             <?= $this->Form->control('readonly-max', ['value' => 10000, 'class' => 'r20', 'readonly', 'label' => false]) ?>
         </div>
+        <?= $this->Form->end() ?>
         <div class="text-center">
-            <?= $this->Form->button('Filtrar', ['class' => 'btn-filtrar']) ?>
+            <?= $this->Form->button('Filtrar', ['id' => 'filtrar', 'class' => 'btn-filtrar']) ?>
         </div>
     </div>
     <div class="produtos">
@@ -50,4 +52,14 @@
         let produto = $(this).attr('product');
         window.location.href = "<?= $this->request->webroot ?>produtos/view/" + produto;
     })
+    $("#filtrar").click(function() {
+        $.ajax({
+            type: 'POST',
+            data: $("#form-filtro").serialize(),
+            success: function(data) {
+                $(".produtos").empty();
+                $(".produtos").append(data);
+            }
+        });
+    });
 </script>

@@ -70,7 +70,6 @@ $session = $this->getRequest()->getSession();
                 <ul>
                     <li><?= $this->Html->link('Inicio', '/', ['escape' => false]) ?></li>
                     <li><?= $this->Html->link('Produtos', ['controller' => 'Produtos', 'action' => 'all'], ['escape' => false]) ?></li>
-                    <li><?= $this->Html->link('Sobre', ['controller' => 'Pages', 'action' => 'sobre'], ['escape' => false]) ?></li>
                     <li><?= $this->Html->link('Contate-nos', ['controller' => 'Pages', 'action' => 'contateNos'], ['escape' => false]) ?></li>
                 </ul>
             </nav>
